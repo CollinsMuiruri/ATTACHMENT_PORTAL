@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/apply.css' %}">
+    <title>{% block title %}Apply{% endblock %}</title>
+</head>
+<body>
+
+    <div class="main">
+        <!-- Top area -->
+        <div class="top">
+            <div class="top-left">
+                <h1>Attachment Application</h1>
+                <p>Good morning, James <img src="{% static 'images/icons/wave-icon.svg' %}" alt="wave icon"></p>
+            </div>
+
+            <div class="top-right">
+                <div class="icons">
+                    <img src="{% static 'images/icons/settings-icon.svg' %}" alt="">
+                    <img src="{% static 'images/icons/logout-icon.svg' %}" alt="">
+                </div>
+                <img src="{% static 'images/pexels-photo-428333.webp' %}" alt="" id="profile-image">
+            </div>
+
+
+        </div>
+        <!-- End of top area -->
+
+        <div class="form-area">
+            
+            <form id="attachmentForm" action="">
+                <h2> Attachment Form</h2>
+                <br>
+                <br>
+                <br>
+
+                <div class="tab">
+                    <h3>1. Personal Details:</h3>
+                    <br>
+
+                    <div class="tab-contents">
+                        <label for="full-name">Your Full Name:</label>
+                        <br>
+                        <input type="text" placeholder="Simon of Cyrene" required name="full-name" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="admission-number">Admission Number:</label>
+                        <br>
+                        <input type="text" placeholder="12 / 34567" required name="admission-number" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="email">Email</label>
+                        <br>
+                        <input type="email" placeholder="1234567@students.kcau.ac.ke" required name="email" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="phone-number">Phone Number</label>
+                        <br>
+                        <input type="tel" placeholder="0712 345 678" required name="phone-number" oninput="this.className = ''">
+                        <br><br>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <h3>2. Course Details:</h3>
+                    <br>
+
+                    <div class="tab-contents">
+                        <label for="course-name">Course:</label>
+                        <br>
+                        <input type="text" placeholder="Bachelors of Business Information Technology" required name="course-name" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="mode-of-study">Mode of Study:</label>
+                        <br>
+                        <input type="text" placeholder="Full Time" required name="mode-of-study" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="campus">Campus</label>
+                        <br>
+                        <input type="text" placeholder="Main Campus" required name="campus" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="student-type">Student Type</label>
+                        <br>
+                        <input type="text" placeholder="Self Sponsored Students (SSS)" required name="student-type" oninput="this.className = ''">
+                        <br><br>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <h3>3. Attachment Details:</h3>
+                    <br>
+
+                    <div class="tab-contents">
+                        <label for="organisation-name">Name of Organisation Attached:</label>
+                        <br>
+                        <input type="text" placeholder="BOMAS of Kenya (Organisation)" required name="organisation-name" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="organisation-location">Location of Organisation:</label>
+                        <br>
+                        <input type="text" placeholder="Kiambu Town" required name="organisation-location" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="start-date">Date Joined:</label>
+                        <br>
+                        <input type="date" placeholder="03/26/2023" required name="start-date" oninput="this.className = ''">
+                        <br><br>
+        
+                        <label for="end-date">End Date:</label>
+                        <br>
+                        <input type="date" placeholder="05/19/2023" required name="end-date" oninput="this.className = ''">
+                        <br><br>
+                    </div>
+                </div>
+
+                <br>
+                <div class="buttons">
+                    <button type="button" id="previous-btn" onclick="nextPrev(-1)">PREVIOUS</button>
+                    <button type="button" id="next-btn" onclick="nextPrev(1)">NEXT</button>
+                </div>
+            </form>
+            
+            <div class="form-progress">
+                <div class="progress-top">
+                    <h3>Form Progress</h3>
+                </div>
+                <div class="form-progress-content">
+                    <div class="actual-content">
+                        <span></span>
+                        1. Personal Details
+                    </div>
+                    <div class="actual-content">
+                        <span></span>
+                        2. Course Details
+                    </div>
+                    <div class="actual-content">
+                        <span></span>
+                        3. Attachment Details
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/form-steps.js' %}"></script>
+</body>
+{% endblock %}

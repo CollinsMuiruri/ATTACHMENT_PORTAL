@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Login | KCA Attachment</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <img src="{% static 'images/kca_logo.svg' %}" alt="">
+            <h1>ATTACHMENT PORTAL</h1>
+            <br><br><br><br><br><br><br><br>
+            <h2>LOG IN</h2>
+
+            <form action="">
+                <label for="email">Email</label>
+                <br>
+                <input type="email" placeholder="1234567@students.kcau.ac.ke" required>
+                <br><br>
+
+                <label for="password">Password</label>
+                <br>
+                <input type="password" placeholder="• • • • • • • • • • • • • • •" required id="password-input">
+                <br><br>
+
+                <input type="submit" value="LOG IN" id="submit-button">
+            </form>
+            <br>
+
+            <p>Forgot Password? <span>Click here to reset</span> </p>
+        </div>
+    </div>
+</body>
+</html>

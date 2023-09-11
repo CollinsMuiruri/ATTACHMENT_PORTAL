@@ -1,0 +1,34 @@
+{% load static %}
+<nav>
+    <div class="logo">
+        <img src="{% static 'images/kca_logo.svg' %}" alt="">
+    </div>
+    <div class="links">
+        <li id="home" class="active-link">
+            <img src="{% static 'images/icons/home-icon.svg' %}" alt="">
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+
+        <li id="apply">
+            <img src="{% static 'images/icons/apply-icon.svg' %}" alt="">
+            <a href="{% url 'apply' %}">Apply</a>
+        </li>
+
+        <li id="logbook">
+            <img src="{% static 'images/icons/logbook-icon.svg' %}" alt="">
+            <a href="{% url 'logbook' %}">Log Book</a>
+        </li>
+
+        <li id="downloads">
+            <img src="{% static 'images/icons/downloads-icon.svg' %}" alt="">
+            <a href="{% url 'downloads' %}">Downloads</a>
+        </li>
+
+    </div>
+
+
+    <div class="help">
+        <p>Help</p>
+        <embed src="{% static 'images/icons/help-icon.svg' %}" type="" class="help-icon-maze">
+    </div>
+</nav>

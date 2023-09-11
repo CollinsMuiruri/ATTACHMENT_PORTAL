@@ -1,0 +1,47 @@
+{% load static %}
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DashBoard | KCA Attachment</title>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="top">
+            <div class="top-left">
+                <h1>Attachment Summary</h1>
+                <p>Good morning, James <img src="{% static 'images/icons/wave-icon.svg' %}" alt="wave icon"></p>
+            </div>
+
+            <div class="top-right">
+                <div class="icons">
+                    <img src="{% static 'images/icons/settings-icon.svg' %}" alt="">
+                    <img src="{% static 'images/icons/logout-icon.svg' %}" alt="">
+                </div>
+                <img src="{% static 'images/pexels-photo-428333.webp' %}" alt="" id="profile-image">
+            </div>
+
+
+        </div>
+
+        <div class="progress-area">
+            <h2>Attachment Progress : <span>90% DONE</span></h2>
+            <br>
+            <div class="progress-bar">
+                <div class="progress" id="progress-1">Apply</div>
+                <div class="space" id="space-1"></div>
+                <div class="space-extra" id="space-1-1"></div>
+                <div class="progress" id="progress-2">Begin Attachment</div>
+                <div class="space" id="space-2"></div>
+                <div class="space-extra" id="space-2-1"></div>
+                <div class="progress" id="progress-3">Log Your Progress</div>
+                <div class="space" id="space-3"></div>
+                <div class="space-extra" id="space-3-1"></div>
+                <div class="progress" id="progress-4">Pass Assessment</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

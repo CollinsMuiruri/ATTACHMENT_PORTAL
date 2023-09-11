@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>{% block title %}DashBoard{% endblock %}</title>
+</head>
+<body>
+    <div class="main">
+        <!-- Top area -->
+        <div class="top">
+            <div class="top-left">
+                <h1>Attachment Summary</h1>
+                <p>Good morning, James <img src="{% static 'images/icons/wave-icon.svg' %}" alt="wave icon"></p>
+            </div>
+
+            <div class="top-right">
+                <div class="icons">
+                    <img src="{% static 'images/icons/settings-icon.svg' %}" alt="">
+                    <img src="{% static 'images/icons/logout-icon.svg' %}" alt="">
+                </div>
+                <img src="{% static 'images/pexels-photo-428333.webp' %}" alt="" id="profile-image">
+            </div>
+
+
+        </div>
+        <!-- End of top area -->
+
+        <!-- Progress Bar -->
+        <div class="progress-area">
+            <h2>Attachment Progress : <span>90% DONE</span></h2>
+            <br>
+            <div class="progress-bar">
+                <div class="progress" id="progress-1">Apply</div>
+                <div class="space" id="space-1"></div>
+                <div class="space-extra" id="space-1-1"></div>
+                <div class="progress" id="progress-2">Begin Attachment</div>
+                <div class="space" id="space-2"></div>
+                <div class="space-extra" id="space-2-1"></div>
+                <div class="progress" id="progress-3">Log Your Progress <span>(3/10)</span> </div>
+                <div class="space" id="space-3"></div>
+                <div class="space-extra" id="space-3-1"></div>
+                <div class="progress" id="progress-4">Pass Assessment</div>
+            </div>
+        </div>
+        <!-- End of Progress Bar -->
+
+        <!-- Details Content -->
+        <div class="details-area">
+            <div class="student-details">
+                <div class="details-head">
+                    <h3>Student's Details</h3>
+                </div>
+                <div class="details-content-area">
+                    <label for="Name">Name:</label>
+                    <p class="content">James Orengo AbdiHassan</p>
+                    <br>
+        
+                    <label for="Name">Email:</label>
+                    <p class="content">1234567@students.kcau.ac.ke</p>
+                    <br>
+        
+                    <div class="two-column-area">
+                        <div class="left">
+                            <label for="Name">Admission Number:</label>
+                            <p class="content">12/34567</p>    
+                        </div>
+            
+                        <div class="right">
+                            <label for="Name">Phone Number:</label>
+                            <p class="content">0712 345 678</p>    
+                        </div>
+                    </div>
+                    <br>    
+        
+                    <label for="Name">Course:</label>
+                    <p class="content">Bachelors of Business Information Technology</p>
+                    <br>
+        
+                    <div class="two-column-area">
+                        <div class="left">
+                            <label for="Name">Mode of Study:</label>
+                            <p class="content">Full Time</p>    
+                        </div>
+        
+                        <div class="right">
+                            <label for="Name">Campus:</label>
+                            <p class="content">Main Campus</p>    
+                        </div>
+                    </div>
+                    <br>
+        
+                    <label for="Name">Student Type:</label>
+                    <p class="content">Self Sponsored Student (SSS)</p>
+                </div>
+    
+                </div>
+
+            <div class="attachment-details">
+                <div class="details-head">
+                    <h3>Attachment Details</h3>
+                </div>
+
+                <div class="details-content-area">
+                    <label for="Name">Name of Organisation Attached:</label>
+                    <p class="content">BOMAS of Kenya (Organisation)</p>
+                    <br>
+        
+                    <label for="Name">Location of Organisation:</label>
+                    <p class="content">Lang'ata Constituency</p>
+                    <br>
+        
+                    <div class="two-column-area">
+                        <div class="left">
+                            <label for="Name">Date Joined:</label>
+                            <p class="content">03/24/2023</p>    
+                        </div>
+            
+                        <div class="right">
+                            <label for="Name">End Date:</label>
+                            <p class="content">05/19/2023</p>    
+                        </div>
+                    </div>
+                    <br>    
+        
+                    <!-- <label for="Name">Course:</label>
+                    <p class="content">Bachelors of Business Information Technology</p>
+                    <br> -->
+        
+                    <div class="two-column-area">
+                        <div class="left">
+                            <label for="Name">Assessor:</label>
+                            <p class="content">Mr. Eliud Jakababa</p>    
+                        </div>
+        
+                        <div class="right">
+                            <label for="Name">Assessor's Number:</label>
+                            <p class="content">0712 345 678</p>    
+                        </div>
+                    </div>
+                    <br>
+        
+                    <label for="Name">Attachment Status:</label>
+                    <p id="att-status">ATTACHMENT ONGOING</p>
+                    <br>
+    
+                    <label for="Name">DATE AND TIME STAMP:</label>
+                    <p class="content">05/29/2023<span> AT </span>10:00:45</p>
+    
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+{% endblock %}

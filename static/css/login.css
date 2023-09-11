@@ -1,0 +1,70 @@
+/* body{
+    background: black;
+} */
+
+.container{
+    display: flex;
+}
+
+.left{
+    width: 50%;
+    height: 100vh;
+    background-image: url(../images/student-attached.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.right label, p{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+p span{
+    color: #D0B216;
+}
+
+p span:hover{
+    color: #003976;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.right input{
+    height: 20px;
+    width: 350px;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.50);
+    border-radius: 5px;
+}
+
+#password-input{
+    letter-spacing: 2px;
+}
+
+#submit-button{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    background-color: #003976;
+    color: white;
+    border: none;
+}
+
+#submit-button:hover{
+    background-color: #D0B216;
+    color: #003976;
+    cursor: pointer;
+    transition: .3s;
+}
