@@ -7,18 +7,31 @@
     <title>{% block title %}DashBoard{% endblock %}</title>
 </head>
 <body>
+
+    {% if messages %}
+    <ul class="messages" style="position: absolute; right: 25rem; left: 25rem;">
+        {% for message in messages %}
+        <br>
+        <li id="single-message" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <div class="main">
         <!-- Top area -->
         <div class="top">
             <div class="top-left">
                 <h1>Attachment Summary</h1>
-                <p>Good morning, James <img src="{% static 'images/icons/wave-icon.svg' %}" alt="wave icon"></p>
+                <p>Good morning, {{request.user.username}} <img src="{% static 'images/icons/wave-icon.svg' %}" alt="wave icon"></p>
             </div>
 
             <div class="top-right">
                 <div class="icons">
                     <img src="{% static 'images/icons/settings-icon.svg' %}" alt="">
-                    <img src="{% static 'images/icons/logout-icon.svg' %}" alt="">
+                    <a href="{% url 'logout' %}">
+                        <img src="{% static 'images/icons/logout-icon.svg' %}" alt="">
+                    </a>
                 </div>
                 <img src="{% static 'images/pexels-photo-428333.webp' %}" alt="" id="profile-image">
             </div>
@@ -54,17 +67,17 @@
                 </div>
                 <div class="details-content-area">
                     <label for="Name">Name:</label>
-                    <p class="content">James Orengo AbdiHassan</p>
+                    <p class="content">{{ request.user.first_name }} {{ request.user.middle_name }} {{ request.user.last_name }}</p>
                     <br>
         
                     <label for="Name">Email:</label>
-                    <p class="content">1234567@students.kcau.ac.ke</p>
+                    <p class="content">{{ request.user.email }}</p>
                     <br>
         
                     <div class="two-column-area">
                         <div class="left">
                             <label for="Name">Admission Number:</label>
-                            <p class="content">12/34567</p>    
+                            <p class="content">{{ user.adm_no }}</p>    
                         </div>
             
                         <div class="right">

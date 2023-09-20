@@ -14,18 +14,31 @@
         <div class="right">
             <img src="{% static 'images/kca_logo.svg' %}" alt="">
             <h1>ATTACHMENT PORTAL</h1>
-            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br>
             <h2>LOG IN</h2>
 
-            <form action="">
-                <label for="email">Email</label>
+            <form method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <br>
+                    <li id="single-message" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    <br>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                
+                <label for="{{ login_form.username.id_for_label }}">Username</label>
                 <br>
-                <input type="email" placeholder="1234567@students.kcau.ac.ke" required>
+                {{ login_form.username }}
+                {{ login_form.username.errors }}
                 <br><br>
 
-                <label for="password">Password</label>
+                <label for="{{ login_form.password.id_for_label }}">Password</label>
                 <br>
-                <input type="password" placeholder="• • • • • • • • • • • • • • •" required id="password-input">
+                {{ login_form.password }}
+                {{ login_form.password.errors }}
                 <br><br>
 
                 <input type="submit" value="LOG IN" id="submit-button">
