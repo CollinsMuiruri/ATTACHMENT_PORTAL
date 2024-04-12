@@ -1,26 +1,35 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block content %}
 <head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-	<link rel="stylesheet" href="{% static 'css/apply.css' %}">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/apply.css' %}">
     <title>{% block title %}Student Register{% endblock %}</title>
 </head>
 
 <body>
-    <div class="">
-		<div class="page-top" style="display:flex;align-items: center;flex-direction:column; justify-content: center;">
-			<img src="{% static 'images/kca_logo.svg' %}" alt="" style="width: 100px;">
-            <h3>ATTACHMENT PORTAL | STUDENT REGISTRATION</h3>
-		</div>
-		
+    <div class="main">
+        <!-- Top area -->
+        <div class="top">
+            <div class="top-left">
+                <h1>Attachment Application</h1>
+                <p>Good morning, {{request.user.username | capfirst}} <img src="{% static 'images/icons/wave-icon.svg' %}" alt="wave icon"></p>
+            </div>
 
-			<div class="form-area" style="margin-left: 100px;margin-right: 200px;">			
-				<form method="POST" id="stuRegForm">
+            <div class="top-right">
+                <div class="icons">
+                    <img src="{% static 'images/icons/settings-icon.svg' %}" alt="">
+                    <img src="{% static 'images/icons/logout-icon.svg' %}" alt="">
+                </div>
+                <img src="{% static 'images/pexels-photo-428333.webp' %}" alt="" id="profile-image">
+            </div>
+
+
+        </div>
+        <!-- End of top area -->
+
+			<div class="form-area">			
+				<form method="POST" id="attachmentForm">
 					{% csrf_token %}
 					{% if messages %}
 					<ul class="messages">
@@ -85,7 +94,7 @@
 							{{ form.last_name }}
 							{{ form.last_name.errors }}
 							<br><br>
-							
+						
 							<!-- 7 -->
 							<label for="{{ form.email.id_for_label }}">School Email</label>
 							<br>
@@ -146,9 +155,6 @@
 
 					<!-- <input type="submit" value="LOG IN" id="submit-button"> -->
 					<br>
-					<p>Already have an account? <a href="{% url 'login' %}"><span></span>Click here to Login</span></a> </p>
-
-					<br>
 					<div class="buttons">
 						<button type="button" id="previous-btn" onclick="nextPrev(-1)">PREVIOUS</button>
 						<button type="button" id="next-btn" onclick="nextPrev(1)">NEXT</button>
@@ -156,30 +162,31 @@
 				</form>
 				<br>
 
+				<p>Already have an account?<span>Click here to Login</span> </p>
 			
 
 			<div class="form-progress">
                 <div class="progress-top">
-                    <h3>Registration Progress</h3>
+                    <h3>Form Progress</h3>
                 </div>
                 <div class="form-progress-content">
                     <div class="actual-content">
                         <span></span>
-                        1. Account Details
+                        1. Personal Details
                     </div>
                     <div class="actual-content">
                         <span></span>
-                        2. Personal Details
+                        2. Course Details
                     </div>
                     <div class="actual-content">
                         <span></span>
-                        3. School Details
+                        3. Attachment Details
                     </div>
                 </div>
             </div>
 
 		</div>
     </div>
-	<script src="{% static 'js/stu_reg_form_steps.js' %}"></script>
+	<script src="{% static 'js/form-steps.js' %}"></script>
 </body>
-</html>
+{% endblock %}

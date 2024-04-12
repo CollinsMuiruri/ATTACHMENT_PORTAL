@@ -13,11 +13,16 @@ from django.contrib import messages
 def home(request):
     if request.user.is_student:
         return render(request, "index.html")
+    elif request.user.is_lecturer:
+        return render(request, "index.html")
     else:
-        return redirect('lecturer')
+        return redirect('lec_admin')
 
 def lecturer(request):
     return render(request, "lecturer/home.html")
+
+def lec_admin(request):
+    return render(request, "lecturer/lec_admin.html")
 
 def apply(request):
     return render(request, "apply.html")

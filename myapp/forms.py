@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
-from .models import Student, Lecturer
+from .models import Student, Lecturer, Course
 from django import forms
 
 from .models import User
@@ -11,13 +11,26 @@ SPONSORSHIP = (
     ("GOVERNMENT", "GSS"),
 )
 
+STUDY_MODE = (
+    ("FULL TIME", "FULL TIME"),
+    ("PART TIME", "PART TIME"),
+    ("DISTANCE LEARNING", "DISTANCE LEARNING"),
+)
+
+CAMPUS = (
+    ("MAIN CAMPUS", "MAIN CAMPUS"),
+    ("TOWN CAMPUS", "TOWN CAMPUS"),
+    ("WESTERN CAMPUS", "WESTERN CAMPUS"),
+    ("KITENGELA CAMPUS", "KITENGELA CAMPUS"),
+)
+
 class StudentSignUpForm(UserCreationForm):
     middle_name = forms.CharField(required=True)
     phone_number = forms.IntegerField(required=True)
     adm_no = forms.CharField(required=True)
-    course = forms.CharField(required=True)
-    study_mode = forms.CharField(required=True)
-    campus = forms.CharField(required=True)
+    course = forms.ModelChoiceField(queryset=Course.objects.all(), required=True)
+    study_mode = forms.ChoiceField(choices=STUDY_MODE, required=True)
+    campus = forms.ChoiceField(choices=CAMPUS, required=True)
     student_type = forms.ChoiceField(choices=SPONSORSHIP, required=True)
 
     class Meta(UserCreationForm.Meta):

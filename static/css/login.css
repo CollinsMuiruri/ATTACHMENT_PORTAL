@@ -26,14 +26,15 @@
     font-size: 20px;
 }
 
-p span{
+p a {
     color: #D0B216;
+    text-decoration: none;
 }
 
-p span:hover{
+p a:hover{
     color: #003976;
     cursor: pointer;
-    transition: .1s;
+    transition: .3s;
 }
 
 .right input{

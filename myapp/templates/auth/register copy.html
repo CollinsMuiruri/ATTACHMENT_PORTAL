@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Student Register | KCA Attachment</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <img src="{% static 'images/kca_logo.svg' %}" alt="">
+            <h1>ATTACHMENT PORTAL</h1>
+            <br><br><br><br><br>
+            <h2>STUDENT REGISTER</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <br>
+                    <li id="single-message" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    <br>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                
+                <!-- 1 -->
+				<label for="{{ form.first_name.id_for_label }}">First Name</label>
+                <br>
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+                <br><br>
+
+				<!-- 2 -->
+				<label for="{{ form.middle_name.id_for_label }}">Middle Name</label>
+                <br>
+                {{ form.middle_name }}
+                {{ form.middle_name.errors }}
+                <br><br>
+
+				<!-- 3 -->
+				<label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                <br>
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+                <br><br>
+
+				<!-- 4 -->
+				<label for="{{ form.username.id_for_label }}">Username</label>
+                <br>
+                {{ form.username }}
+                {{ form.username.errors }}
+                <br><br>
+				
+				<!-- 5 -->
+				<label for="{{ form.email.id_for_label }}">School Email</label>
+                <br>
+                {{ form.email }}
+                {{ form.email.errors }}
+                <br><br>
+				
+				<!-- 6 -->
+				<label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                <br>
+                {{ form.phone_number }}
+                {{ form.phone_number.errors }}
+                <br><br>
+				
+				<!-- 7 -->
+				<label for="{{ form.adm_no.id_for_label }}">Admission Number</label>
+                <br>
+                {{ form.adm_no }}
+                {{ form.adm_no.errors }}
+                <br><br>
+
+				<!-- 8 -->
+				<label for="{{ form.course.id_for_label }}">Course</label>
+                <br>
+                {{ form.course }}
+                {{ form.course.errors }}
+                <br><br>
+				
+				<!-- 9 -->
+				<label for="{{ form.study_mode.id_for_label }}">Study Mode</label>
+                <br>
+                {{ form.study_mode }}
+                {{ form.study_mode.errors }}
+                <br><br>
+				
+				<!-- 10 -->
+				<label for="{{ form.campus.id_for_label }}">Campus</label>
+                <br>
+                {{ form.campus }}
+                {{ form.campus.errors }}
+                <br><br>
+				
+				<!-- 11 -->
+				<label for="{{ form.student_type.id_for_label }}">Student Type</label>
+                <br>
+                {{ form.student_type }}
+                {{ form.student_type.errors }}
+                <br><br>				
+				
+				<!-- 12 -->				
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                <br>
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+                <br><br>
+
+				<!-- 13 -->				
+                <label for="{{ form.password.id_for_label }}">Confirm Password</label>
+                <br>
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+                <br><br>				
+
+                <input type="submit" value="LOG IN" id="submit-button">
+            </form>
+            <br>
+
+            <p>Forgot Password? <span>Click here to reset</span> </p>
+        </div>
+    </div>
+</body>
+</html>

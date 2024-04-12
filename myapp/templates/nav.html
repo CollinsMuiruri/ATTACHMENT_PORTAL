@@ -4,22 +4,22 @@
         <img src="{% static 'images/kca_logo.svg' %}" alt="">
     </div>
     <div class="links">
-        <li id="home" class="active-link">
+        <li id="home" {% if request.resolver_match.url_name == 'home' %} class="active-link" {% endif %}>
             <img src="{% static 'images/icons/home-icon.svg' %}" alt="">
             <a href="{% url 'home' %}">Home</a>
         </li>
 
-        <li id="apply">
+        <li id="apply" {% if request.resolver_match.url_name == 'apply' %} class="active-link" {% endif %}>
             <img src="{% static 'images/icons/apply-icon.svg' %}" alt="">
             <a href="{% url 'apply' %}">Apply</a>
         </li>
 
-        <li id="logbook">
+        <li id="logbook" {% if request.resolver_match.url_name == 'logbook' %} class="active-link" {% endif %}>
             <img src="{% static 'images/icons/logbook-icon.svg' %}" alt="">
             <a href="{% url 'logbook' %}">Log Book</a>
         </li>
 
-        <li id="downloads">
+        <li id="downloads" {% if request.resolver_match.url_name == 'downloads' %} class="active-link" {% endif %}>
             <img src="{% static 'images/icons/downloads-icon.svg' %}" alt="">
             <a href="{% url 'downloads' %}">Downloads</a>
         </li>
