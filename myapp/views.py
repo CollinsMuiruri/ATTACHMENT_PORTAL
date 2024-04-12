@@ -75,7 +75,7 @@ def login_request(request):
                 elif user.is_lecturer:
                     return redirect("lecturer")
                 else:
-                    return redirect("admin")
+                    return redirect("/admin")
             else:
                 messages.error(request, "Invalid username or password.")
         else:
