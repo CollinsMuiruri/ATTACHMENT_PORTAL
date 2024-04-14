@@ -1,0 +1,270 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="{% static 'css/apply.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>{% block title %}Lecturer Register{% endblock %}</title>
+</head>
+
+<body>
+    <div class="">
+		<div class="page-top" style="display:flex;align-items: center;flex-direction:column; justify-content: center;">
+			<img src="{% static 'images/kca_logo.svg' %}" alt="" style="width: 100px;">
+            <h3>ATTACHMENT PORTAL | LECTURER REGISTRATION</h3>
+		</div>
+		
+
+			<div class="form-area" style="margin-left: 100px;margin-right: 200px;">			
+				<form method="POST" id="lecRegForm">
+					{% csrf_token %}
+					{% if messages %}
+					<ul class="messages">
+						{% for message in messages %}
+						<br>
+						<li id="single-message" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+						<br>
+						{% endfor %}
+					</ul>
+					{% endif %}
+					
+					<div class="tab">
+						<h3>1. Account Details:</h3>
+						<br>           
+
+						<div class="tab-contents">   
+							<!-- 1 -->
+							<label for="{{ form.username.id_for_label }}">Username</label>
+							<br>
+							{{ form.username }}
+							{{ form.username.errors }}
+							<br><br>
+							
+							<!-- 2 -->				
+							<label for="{{ form.password.id_for_label }}">Password</label>
+							<br>
+							{{ form.password1 }}
+							{{ form.password1.errors }}
+							<br><br>
+
+							<!-- 3 -->				
+							<label for="{{ form.password.id_for_label }}">Confirm Password</label>
+							<br>
+							{{ form.password2 }}
+							{{ form.password2.errors }}
+							<br><br>
+						</div>
+					</div>						
+
+					<div class="tab">
+						<h3>2. Personal Details:</h3>
+						<br>
+
+						<div class="tab-contents">   
+							<!-- 4 -->
+							<label for="{{ form.first_name.id_for_label }}">First Name</label>
+							<br>
+							{{ form.first_name }}
+							{{ form.first_name.errors }}
+							<br><br>
+
+							<!-- 6 -->
+							<label for="{{ form.last_name.id_for_label }}">Last Name</label>
+							<br>
+							{{ form.last_name }}
+							{{ form.last_name.errors }}
+							<br><br>
+							
+							<!-- 7 -->
+							<label for="{{ form.email.id_for_label }}">Lecturer Email</label>
+							<br>
+							{{ form.email }}
+							{{ form.email.errors }}
+							<br><br>
+
+							<!-- 8 -->
+							<label for="{{ form.lec_id.id_for_label }}">Lecturer ADM_ID</label>
+							<br>
+							{{ form.lec_id }}
+							{{ form.lec_id.errors }}
+							<br><br>							
+							
+							<!-- 9 -->
+							<label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+							<br>
+							{{ form.phone_number }}
+							{{ form.phone_number.errors }}
+							<br><br>
+
+						</div>
+					</div>
+
+					<!-- Courses Section -->
+					<div class="tab">
+						<h3>3. Course Details:</h3>
+						<br>
+
+						<div class="tab-contents">   
+
+							<!-- Assessor Status Field -->
+							<label for="{{ form.assessor_status.id_for_label }}">Assessor Status</label>
+							<br>
+							{{ form.assessor_status }}
+							{{ form.assessor_status.errors }}
+							<br><br>
+
+							<!-- Courses You Can Teach Field -->
+							<label for="{{ form.courses.id_for_label }}">Courses You Can Teach</label>
+							<br>
+							<!-- Search Input -->
+							<!-- <input id="search_here" class="form-control mb-3" placeholder="Type course or abbreviation to search..." required="false"/>									 -->
+							
+							<!-- Display Area for Selected Courses -->
+							<!-- <div id="box"> -->
+								<!-- Selected courses will be shown here dynamically -->
+								<!-- Initially, this area can display a message like "Selected courses will be shown here..." -->
+							<!-- </div>							 -->
+
+							{{ form.courses }}
+							{{ form.courses.errors }}
+							<br><br>
+
+							<!-- Hidden Input Field for Selected Courses -->
+							<!-- This hidden input field stores the selected course IDs for form submission -->
+							<input type="hidden" id="selected_courses" name="courses" value="" required="false">
+						</div>
+					</div>				
+
+
+					<!-- <input type="submit" value="LOG IN" id="submit-button"> -->
+					<br>
+					<p>Already have an account? <a href="{% url 'login' %}"><span></span>Click here to Login</span></a> </p>
+
+					<br>
+					<div class="buttons">
+						<button type="button" id="previous-btn" onclick="nextPrev(-1)">PREVIOUS</button>
+						<button type="button" id="next-btn" onclick="nextPrev(1)">NEXT</button>
+					</div>
+				</form>
+				<br>
+
+			
+
+			<div class="form-progress">
+                <div class="progress-top">
+                    <h3>Registration Progress</h3>
+                </div>
+                <div class="form-progress-content">
+                    <div class="actual-content">
+                        <span></span>
+                        1. Account Details
+                    </div>
+                    <div class="actual-content">
+                        <span></span>
+                        2. Personal Details
+                    </div>
+					<div class="actual-content">
+                        <span></span>
+                        3. Course Details
+                    </div>
+                </div>
+            </div>
+
+		</div>
+    </div>
+	<script src="{% static 'js/lec_reg_form_steps.js' %}"></script>
+	<script>
+		const data = '{{ courses_json }}';
+		const courses = JSON.parse(data.replace(/&quot;/g, '"'));
+		console.log(courses);
+		const input = document.getElementById('search_here');
+		const box = document.getElementById('box');
+		const form = document.getElementById('lecRegForm');
+		let selectedCourseIds = [];
+		let selectField = document.getElementById('id_courses');
+	
+		input.addEventListener('keyup', (e) => {
+			const search_term = e.target.value.toLowerCase();
+			if (search_term === '') {
+				updateBoxContent();
+				return;
+			}
+			const filteredCourses = courses.filter(course =>
+				course['name'].toLowerCase().includes(search_term) ||
+				course['abbreviation'].toLowerCase().includes(search_term)
+			);
+			updateBoxContent(filteredCourses);
+		});
+	
+		function updateSelectedCourses(event) {
+			const courseId = parseInt(event.target.value);
+			if (event.target.checked) {
+				selectedCourseIds.push(courseId);
+			} else {
+				selectedCourseIds = selectedCourseIds.filter(id => id !== courseId);
+			}
+			updateSelectField();
+			updateHiddenInput();
+		}
+	
+		function updateSelectField() {
+		// Check if selectField is null or undefined
+		if (!selectField) {
+			console.error("selectField element not found.");
+			return;
+		}
+		selectField.innerHTML = '';
+		selectedCourseIds.forEach(id => {
+			const course = courses.find(course => course.id === id);
+			if (course) {
+				const option = document.createElement('option');
+				option.value = course.id;
+				option.textContent = course.name;
+				selectField.appendChild(option);
+			}
+		});
+		}
+	
+		function updateHiddenInput() {
+			const hiddenInput = document.getElementById('selected_courses');
+			if (hiddenInput) {
+				hiddenInput.value = JSON.stringify(selectedCourseIds);
+			} else {
+				console.error("Hidden input field 'selected_courses' not found.");
+			}
+		}
+		function updateBoxContent(filteredCourses = null) {
+			const coursesToDisplay = filteredCourses || selectedCourseIds.map(id => courses.find(course => course.id === id));
+			box.innerHTML = '';
+			if (coursesToDisplay.length === 0) {
+				box.innerHTML = '<p>Selected courses will be shown here...</p>';
+				return;
+			}
+			coursesToDisplay.forEach(course => {
+				box.innerHTML += `
+					<label>
+						<input type="checkbox" id="coursechecklabel" name="selectedCourses" value="${course.id}" ${selectedCourseIds.includes(course.id) ? 'checked' : ''} onchange="updateSelectedCourses(event)">
+						<b>${course.name}</b><br>
+					</label>`;
+			});
+		}
+	
+		// Initial update of checkbox list, select field, and hidden input
+		updateSelectField();
+		updateHiddenInput();
+		updateBoxContent();
+	
+		// Event listener for form submission
+		form.addEventListener('submit', () => {
+			// Update hidden input field with selected course IDs before form submission
+			updateHiddenInput();
+		});
+	</script>
+	
+	
+</body>
+</html>

@@ -9,45 +9,48 @@ class User(AbstractUser):
 
 class Student(models.Model):
     # Sponsorship
-    SELF = "SSS"
-    GOVERNMENT = "GSS"
+    SELF = "Self Sponsored Student"
+    GOVERNMENT = "Government Sponsored Student"
     SPONSORSHIP = [
-        (SELF, "SSS"),
-        (GOVERNMENT, "GSS"),
+        (SELF, "Self Sponsored Student"),
+        (GOVERNMENT, "Government Sponsored Student"),
     ]
 
     # Study Mode
-    FULL = "FULL TIME"
-    PART = "PART TIME"
-    DISTANCE = "DISTANCE LEARNING"
+    FULL = "Full Time"
+    PART = "Part Time"
+    DISTANCE = "Distance Learning"
     STUDY_MODE = [
-        (FULL, "FULL TIME"),
-        (PART, "PART TIME"),
-        (DISTANCE, "DISTANCE LEARNING"),
+        (FULL, "Full Time"),
+        (PART, "Part Time"),
+        (DISTANCE, "Distance Learning"),
     ]
     
     # Campus
-    MAIN = "MAIN CAMPUS"
-    TOWN = "TOWN CAMPUS"
-    WESTERN = "WESTERN CAMPUS"
-    KITENGELA = "KITENGELA CAMPUS"
+    MAIN = "Main Campus"
+    TOWN = "Town Campus"
+    WESTERN = "Western Campus"
+    KITENGELA = "Kitengela Campus"
     CAMPUS = [
-        (MAIN, "MAIN CAMPUS"),
-        (TOWN, "TOWN CAMPUS"),
-        (WESTERN, "WESTERN CAMPUS"),
-        (KITENGELA, "KITENGELA CAMPUS"),
+        (MAIN, "Main Campus"),
+        (TOWN, "Town Campus"),
+        (WESTERN, "Western Campus"),
+        (KITENGELA, "Kitengela Campus"),
     ]
 
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     middle_name = models.CharField(max_length=255, null=True)
     phone_number = models.IntegerField(null=False, default=0000000000)
+    email = models.EmailField()
     adm_no = models.CharField(max_length=12)
     course = models.ForeignKey('Course', on_delete=models.CASCADE, null=False)
     study_mode = models.CharField(max_length=255, choices=STUDY_MODE, default=FULL)
     campus = models.CharField(max_length=255, choices=CAMPUS, default=MAIN)
-    student_type = models.CharField(max_length=3, choices=SPONSORSHIP, default=SELF)
+    student_type = models.CharField(max_length=255, choices=SPONSORSHIP, default=SELF)
     att_form = models.ForeignKey('AttachmentForm', on_delete=models.CASCADE, null=True, blank=True)
+    assessor = models.ForeignKey('Lecturer', blank=True, null=True, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.user.username
@@ -56,7 +59,9 @@ class Student(models.Model):
 class Lecturer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     lec_id = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255, null=False)
     courses = models.ManyToManyField('Course')
+    assessor_status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
@@ -75,6 +80,7 @@ class AttachmentForm(models.Model):
         
 class Course(models.Model):
     name = models.CharField(max_length=500)
+    abbreviation = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name

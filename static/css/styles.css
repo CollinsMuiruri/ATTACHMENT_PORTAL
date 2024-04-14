@@ -60,3 +60,34 @@
       left: -9999px; 
     }
   }
+
+
+#id_assessor_status_0, #id_assessor_status_1{
+  left: 0;
+  width: 50px;
+  margin-top: 10px;
+}  
+
+#box{
+  margin-top: 15px;
+}
+
+#coursechecklabel{
+  width: 40px;
+}
+
+.errorlist{
+  max-width: fit-content;
+
+}
+
+.errorlist li{
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: lightsalmon;
+  font-weight: bold;
+  color: darkred;
+  border-radius: 5px;
+  list-style: none;
+  max-width: fit-content;

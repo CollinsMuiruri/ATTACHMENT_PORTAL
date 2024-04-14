@@ -67,45 +67,45 @@
                 </div>
                 <div class="details-content-area">
                     <label for="Name">Name:</label>
-                    <p class="content">{{ request.user.first_name }} {{ request.user.middle_name }} {{ request.user.last_name }}</p>
+                    <p class="content">{{ student.first_name | capfirst }} {{ student.middle_name | capfirst }} {{ request.user.last_name | capfirst }}</p>
                     <br>
         
                     <label for="Name">Email:</label>
-                    <p class="content">{{ request.user.email }}</p>
+                    <p class="content">{{ student.email }}</p>
                     <br>
         
                     <div class="two-column-area">
                         <div class="left">
                             <label for="Name">Admission Number:</label>
-                            <p class="content">{{ user.adm_no }}</p>    
+                            <p class="content">{{ student.adm_no }}</p>    
                         </div>
             
                         <div class="right">
                             <label for="Name">Phone Number:</label>
-                            <p class="content">0712 345 678</p>    
+                            <p class="content">{{ student.phone_number }}</p>    
                         </div>
                     </div>
                     <br>    
         
                     <label for="Name">Course:</label>
-                    <p class="content">Bachelors of Business Information Technology</p>
+                    <p class="content">{{ student.course }}</p>
                     <br>
         
                     <div class="two-column-area">
                         <div class="left">
                             <label for="Name">Mode of Study:</label>
-                            <p class="content">Full Time</p>    
+                            <p class="content">{{ student.study_mode }}</p>    
                         </div>
         
                         <div class="right">
                             <label for="Name">Campus:</label>
-                            <p class="content">Main Campus</p>    
+                            <p class="content">{{ student.campus }}</p>    
                         </div>
                     </div>
                     <br>
         
                     <label for="Name">Student Type:</label>
-                    <p class="content">Self Sponsored Student (SSS)</p>
+                    <p class="content">{{ student.student_type }}</p>
                 </div>
     
                 </div>

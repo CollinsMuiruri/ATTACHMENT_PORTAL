@@ -32,7 +32,7 @@ function nextPrev(n) {
   // if you have reached the end of the form...
   if (currentTab >= x.length) {
     // ... the form gets submitted:
-    document.getElementById("stuRegForm").submit();
+    document.getElementById("lecRegForm").submit();
     return false;
   }
   // Otherwise, display the correct tab:
@@ -47,7 +47,7 @@ function validateForm() {
   // A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == "") {
+    if (y[i].value === "" && y[i].getAttribute("required") !== "false") {
       // add an "invalid" class to the field:
       y[i].className += " invalid";
       // and set the current valid status to false
