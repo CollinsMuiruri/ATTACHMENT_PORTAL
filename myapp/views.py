@@ -26,7 +26,10 @@ def home(request):
 @login_required
 def lecturer(request):
     if request.user.is_lecturer:
-        return render(request, "lecturer/home.html")
+        lec = Lecturer.objects.get(user=request.user)
+        print(lec)
+
+        return render(request, "lecturer/home.html", {"lec":lec})
     elif request.user.is_student:
         return redirect('home')
     else:

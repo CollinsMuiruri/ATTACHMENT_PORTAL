@@ -125,7 +125,7 @@
 
 
 							<!-- Assessor Status Field -->
-							<label for="{{ form.courses.id_for_label }}">Assessor Status</label>
+							<label for="{{ form.courses.id_for_label }}" id="courses_label">Courses You Can Assess</label>
 							<br>
 							{{ form.courses|as_crispy_field }}
 							{{ form.courses.errors }}
@@ -172,7 +172,10 @@
     </div>
 	<script src="{% static 'js/lec_reg_form_steps.js' %}"></script>	
 	<script>
-		$("#id_courses").select2();
+		$("#id_courses").select2({
+			placeholder: "Type Course or Abbreviation to search...",
+			allowClear: true
+		});
 	</script>
 </body>
 </html>
