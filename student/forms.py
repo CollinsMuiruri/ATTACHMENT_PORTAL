@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
-from .models import Student, Course
+from .models import Student, Course, StudentAttachmentModel
 from django import forms
 
 from .models import User
@@ -55,13 +55,13 @@ class StudentSignUpForm(UserCreationForm):
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']        
         user.is_student = True
         user.save()
         student = Student.objects.create(
             user=user,
-            # first_name=self.cleaned_data['first_name'],
-            # middle_name=self.cleaned_data['middle_name'],
-            # last_name=self.cleaned_data['last_name'],
+            middle_name=self.cleaned_data['middle_name'],
             email=self.cleaned_data['email'],
             phone_number=self.cleaned_data['phone_number'],
             adm_no=self.cleaned_data['adm_no'],
@@ -72,3 +72,61 @@ class StudentSignUpForm(UserCreationForm):
         student.save()
 
         return user
+
+
+
+class StudentAttachmentForm(forms.ModelForm):
+    date_joined = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+    class Meta:
+        model = StudentAttachmentModel
+        fields = ['stu_name', 'adm_no', 'email', 'phone_number', 'course', 'study_mode',
+                  'campus', 'student_type', 'org_name', 'org_location', 'date_joined', 'end_date']
+        labels = {
+            'stu_name': 'Student Name',
+            'adm_no': 'Admission Number',
+            'email': 'Email',
+            'phone_number': 'Phone Number',
+            'course': 'Course',
+            'study_mode': 'Study Mode',
+            'campus': 'Campus',
+            'student_type': 'Student Type',
+            'org_name': 'Organization Name',
+            'org_location': 'Organization Location',
+            'date_joined': 'Date Joined',
+            'end_date': 'End Date'
+        }
+        widgets = {
+            'stu_name': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'adm_no': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'email': forms.EmailInput(attrs={'readonly': 'readonly'}),
+            'phone_number': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'course': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'study_mode': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'campus': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'student_type': forms.TextInput(attrs={'readonly': 'readonly'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')  # Pop the 'user' from kwargs
+        super(StudentAttachmentForm, self).__init__(*args, **kwargs)
+        student = self.user.student
+        self.fields['stu_name'].initial = student.user.get_full_name()
+        self.fields['adm_no'].initial = student.adm_no
+        self.fields['email'].initial = student.email
+        self.fields['phone_number'].initial = student.phone_number
+        self.fields['course'].initial = student.course.name
+        self.fields['study_mode'].initial = student.study_mode
+        self.fields['campus'].initial = student.campus
+        self.fields['student_type'].initial = student.student_type
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.student = self.user.student
+        instance.status = True
+        if commit:
+            instance.save()
+        return instance
+
+        

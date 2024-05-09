@@ -7,6 +7,17 @@
 </head>
 <body>
     test
+	<form action="">
+		
+		before
+		{{form.as_p}}
+		after
+	
+	</form>
+
+	{% for contos in conto %}
+	<li>.</li>{{ contos.name }}
+	{% endfor %}
     <script>
 		const rdata = '{{ courses_json }}'
 		console.log("niaje maze")

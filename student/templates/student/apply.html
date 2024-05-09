@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends './base.html' %}
 {% load static %}
 
 {% block content %}
@@ -30,7 +30,17 @@
 
         <div class="form-area">
             
-            <form id="attachmentForm" action="">
+            <form id="attachmentForm" action="" method="post">
+                {% csrf_token %}
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <br>
+                    <li id="single-message" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    <br>
+                    {% endfor %}
+                </ul>
+                {% endif %}
                 <h2> Attachment Form</h2>
                 <br>
                 <br>
@@ -43,22 +53,30 @@
                     <div class="tab-contents">
                         <label for="full-name">Your Full Name:</label>
                         <br>
-                        <input type="text" placeholder="Simon of Cyrene" required name="full-name" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="Simon of Cyrene" required name="full-name" oninput="this.className = ''"> -->
+                        {{ form.stu_name }}
+                        {{ form.stu_name.errors }}
                         <br><br>
         
                         <label for="admission-number">Admission Number:</label>
                         <br>
-                        <input type="text" placeholder="12 / 34567" required name="admission-number" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="12 / 34567" required name="admission-number" oninput="this.className = ''"> -->
+                        {{  form.adm_no }}
+                        {{  form.adm_no.errors }}
                         <br><br>
         
                         <label for="email">Email</label>
                         <br>
-                        <input type="email" placeholder="1234567@students.kcau.ac.ke" required name="email" oninput="this.className = ''">
+                        <!-- <input type="email" placeholder="1234567@students.kcau.ac.ke" required name="email" oninput="this.className = ''"> -->
+                        {{  form.email }}
+                        {{  form.email.errors }}
                         <br><br>
         
                         <label for="phone-number">Phone Number</label>
                         <br>
-                        <input type="tel" placeholder="0712 345 678" required name="phone-number" oninput="this.className = ''">
+                        <!-- <input type="tel" placeholder="0712 345 678" required name="phone-number" oninput="this.className = ''"> -->
+                        {{ form.phone_number }}
+                        {{ form.phone_number.errors }}
                         <br><br>
                     </div>
                 </div>
@@ -70,22 +88,30 @@
                     <div class="tab-contents">
                         <label for="course-name">Course:</label>
                         <br>
-                        <input type="text" placeholder="Bachelors of Business Information Technology" required name="course-name" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="Bachelors of Business Information Technology" required name="course-name" oninput="this.className = ''"> -->
+                        {{ form.course }}
+                        {{ form.course.errors }}
                         <br><br>
         
                         <label for="mode-of-study">Mode of Study:</label>
                         <br>
-                        <input type="text" placeholder="Full Time" required name="mode-of-study" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="Full Time" required name="mode-of-study" oninput="this.className = ''"> -->
+                        {{ form.study_mode }}
+                        {{ form.study_mode.errors }}
                         <br><br>
         
                         <label for="campus">Campus</label>
                         <br>
-                        <input type="text" placeholder="Main Campus" required name="campus" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="Main Campus" required name="campus" oninput="this.className = ''"> -->
+                        {{ form.campus }}
+                        {{ form.campus.errors }}
                         <br><br>
         
                         <label for="student-type">Student Type</label>
                         <br>
-                        <input type="text" placeholder="Self Sponsored Students (SSS)" required name="student-type" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="Self Sponsored Students (SSS)" required name="student-type" oninput="this.className = ''"> -->
+                        {{ form.student_type }}
+                        {{ form.student_type.errors }}
                         <br><br>
                     </div>
                 </div>
@@ -97,22 +123,30 @@
                     <div class="tab-contents">
                         <label for="organisation-name">Name of Organisation Attached:</label>
                         <br>
-                        <input type="text" placeholder="BOMAS of Kenya (Organisation)" required name="organisation-name" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="BOMAS of Kenya (Organisation)" required name="organisation-name" oninput="this.className = ''"> -->
+                        {{ form.org_name }}
+                        {{ form.org_name.errors }}
                         <br><br>
         
                         <label for="organisation-location">Location of Organisation:</label>
                         <br>
-                        <input type="text" placeholder="Kiambu Town" required name="organisation-location" oninput="this.className = ''">
+                        <!-- <input type="text" placeholder="Kiambu Town" required name="organisation-location" oninput="this.className = ''"> -->
+                        {{ form.org_location }}
+                        {{ form.org_location.errors }}
                         <br><br>
         
                         <label for="start-date">Date Joined:</label>
                         <br>
-                        <input type="date" placeholder="03/26/2023" required name="start-date" oninput="this.className = ''">
+                        <!-- <input type="date" placeholder="03/26/2023" required name="start-date" oninput="this.className = ''"> -->
+                        {{ form.date_joined }}
+                        {{ form.date_joined.errors }}
                         <br><br>
         
                         <label for="end-date">End Date:</label>
                         <br>
-                        <input type="date" placeholder="05/19/2023" required name="end-date" oninput="this.className = ''">
+                        <!-- <input type="date" placeholder="05/19/2023" required name="end-date" oninput="this.className = ''"> -->
+                        {{ form.end_date }}
+                        {{ form.end_date.errors }}
                         <br><br>
                     </div>
                 </div>

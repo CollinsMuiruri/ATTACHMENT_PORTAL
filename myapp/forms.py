@@ -11,12 +11,12 @@ class UserLoginForm(AuthenticationForm):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
     username = UsernameField(
-        widget=forms.TextInput(attrs={"placeholder": "1234567", "required": True})
+        widget=forms.TextInput(attrs={"placeholder": "e.g. 2100001", "required": True})
     )
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "placeholder": "• • • • • • • • • • • • • • •",
+                "placeholder": "•••••••••••••",
                 "id": "password-input",
             }
         )

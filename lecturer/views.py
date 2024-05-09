@@ -19,7 +19,8 @@ def lecturer(request):
     elif request.user.is_student:
         return redirect('home')
     else:
-        return redirect('lec_admin')
+        # return redirect('lec_admin') Will late Make a view for an admin to view the pages as an admin
+        return redirect('admin/')      
     
     
 @login_required
@@ -29,7 +30,8 @@ def lec_admin(request):
     elif request.user.is_lecturer:
         return redirect('lecturer')
     else:
-        return redirect('lec_admin')      
+        # return redirect('lec_admin') Will late Make a view for an admin to view the pages as an admin
+        return redirect('admin/')      
 
 
 class LecturerSignUpView(CreateView):

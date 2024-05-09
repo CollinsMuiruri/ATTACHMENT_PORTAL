@@ -67,7 +67,7 @@
                 </div>
                 <div class="details-content-area">
                     <label for="Name">Name:</label>
-                    <p class="content">{{ student.first_name | capfirst }} {{ student.middle_name | capfirst }} {{ request.user.last_name | capfirst }}</p>
+                    <p class="content">{{ student.user.first_name | capfirst }} {{ student.middle_name | capfirst }} {{ student.user.last_name | capfirst }}</p>
                     <br>
         
                     <label for="Name">Email:</label>
@@ -117,22 +117,38 @@
 
                 <div class="details-content-area">
                     <label for="Name">Name of Organisation Attached:</label>
-                    <p class="content">BOMAS of Kenya (Organisation)</p>
+                    {% if att_form.org_name %}
+                    <p class="content">{{ att_form.org_name }}</p>
+                    {% else %}
+                    <p class="content">Not Provided</p>
+                    {% endif %}
                     <br>
         
                     <label for="Name">Location of Organisation:</label>
-                    <p class="content">Lang'ata Constituency</p>
+                    {% if att_form.org_location %}
+                    <p class="content">{{ att_form.org_location }}</p>
+                    {% else %}
+                    <p class="content">Not Provided</p>
+                    {% endif %}
                     <br>
         
                     <div class="two-column-area">
                         <div class="left">
                             <label for="Name">Date Joined:</label>
-                            <p class="content">03/24/2023</p>    
+                            {% if att_form.date_joined %}
+                            <p class="content">{{ att_form.date_joined }}</p>    
+                            {% else %}
+                            <p class="content">Date Not Provided</p>    
+                            {% endif %}
                         </div>
             
                         <div class="right">
                             <label for="Name">End Date:</label>
-                            <p class="content">05/19/2023</p>    
+                            {% if att_form.end_date %}
+                            <p class="content">{{ att_form.end_date }}</p>    
+                            {% else %}
+                            <p class="content">Date Not Provided</p>    
+                            {% endif %}
                         </div>
                     </div>
                     <br>    
@@ -144,18 +160,30 @@
                     <div class="two-column-area">
                         <div class="left">
                             <label for="Name">Assessor:</label>
-                            <p class="content">Mr. Eliud Jakababa</p>    
+                            {% if att_form.assessor %}
+                            <p class="content">{{ att_form.assessor }}</p>    
+                            {% else %}
+                            <p class="content">Not Yet Assigned</p>    
+                            {% endif %}
                         </div>
         
                         <div class="right">
                             <label for="Name">Assessor's Number:</label>
-                            <p class="content">0712 345 678</p>    
+                            {% if att_form.assessor.phone_number %}
+                            <p class="content">{{ att_form.assessor.phone_number }}</p>    
+                            {% else %}
+                            <p class="content">No Assessor Yet</p>    
+                            {% endif %}
                         </div>
                     </div>
                     <br>
         
                     <label for="Name">Attachment Status:</label>
+                    {% if att_form.status %}
                     <p id="att-status">ATTACHMENT ONGOING</p>
+                    {% else %}
+                    <p id="att-status" style="background-color: red;">ATTACHMENT PENDING</p>
+                    {% endif %}
                     <br>
     
                     <label for="Name">DATE AND TIME STAMP:</label>
